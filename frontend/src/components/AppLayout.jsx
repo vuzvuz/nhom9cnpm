@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { Building2, KeyRound, LayoutDashboard, LogOut, Menu, Users, X } from 'lucide-react';
+import { Banknote, Building2, CalendarDays, KeyRound, LayoutDashboard, List, LogOut, Menu, Users, X } from 'lucide-react';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import Brand from './Brand.jsx';
 
@@ -9,6 +9,11 @@ const mainLinks = [
   { path: '/nhan-khau', label: 'Nhân khẩu', Icon: Users },
 ];
 const passwordLink = { path: '/doi-mat-khau', label: 'Đổi mật khẩu', Icon: KeyRound };
+const feeLinks = [
+  { path: '/khoan-thu', label: 'Danh mục khoản thu', Icon: List },
+  { path: '/bang-phi', label: 'Bảng phí tháng', Icon: CalendarDays },
+  { path: '/thu-phi', label: 'Xác nhận thu phí', Icon: Banknote },
+];
 
 function NavigationLink({ link: { path, label, Icon }, onClick }) {
   return (
@@ -28,6 +33,8 @@ function Sidebar({ onLogout, onNavigate, mobile = false }) {
       <nav aria-label="Điều hướng chính">
         <div className="nav-label">QUẢN LÝ</div>
         {mainLinks.map((link) => <NavigationLink key={link.path} link={link} onClick={onNavigate} />)}
+        <div className="nav-label nav-label--second">THU PHÍ</div>
+        {feeLinks.map((link) => <NavigationLink key={link.path} link={link} onClick={onNavigate} />)}
         <div className="nav-label nav-label--second">TÀI KHOẢN</div>
         <NavigationLink link={passwordLink} onClick={onNavigate} />
       </nav>
@@ -41,7 +48,7 @@ function Sidebar({ onLogout, onNavigate, mobile = false }) {
 export default function AppLayout({ user, onLogout }) {
   const { pathname } = useLocation();
   const menu = useRef(null);
-  const current = [...mainLinks, passwordLink].find((item) => item.path === pathname);
+  const current = [...mainLinks, ...feeLinks, passwordLink].find((item) => item.path === pathname);
   const closeMenu = () => menu.current?.close();
 
   useEffect(() => {

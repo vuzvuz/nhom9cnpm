@@ -1,4 +1,5 @@
 export const households = [
+  { id: 'h1002', apartmentNumber: '1002', area: 80, headName: 'Nguyễn Thu Hà' },
   { id: 'h1', apartmentNumber: 'A-101', area: 72.5, headName: 'Nguyễn Văn Minh' },
   { id: 'h2', apartmentNumber: 'A-203', area: 85, headName: 'Trần Thị Lan' },
   { id: 'h3', apartmentNumber: 'A-305', area: 64.2, headName: 'Lê Hoàng Nam' },
